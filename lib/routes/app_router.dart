@@ -6,6 +6,8 @@ import 'package:cooking_easy/features/main/presentation/screens/home_screen.dart
 import 'package:cooking_easy/features/main/presentation/screens/pick_avatar_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../features/main/presentation/screens/main_screen.dart';
+
 class AppRouter {
   const AppRouter._();
 
@@ -68,7 +70,7 @@ class AppRouter {
   }) {
     return _launch<void>(
       context,
-      builder: (_) => const HomeScreen(),
+      builder: (_) => const MainScreen(),
       clearTask: clearTask,
       finishCurrent: finishCurrent,
     );
