@@ -1,7 +1,6 @@
+import 'package:cooking_easy/features/auth/domain/repositories/auth_repository.dart';
+import 'package:cooking_easy/features/auth/presentation/state/register_state.dart';
 import 'package:flutter/foundation.dart';
-
-import '../../domain/repositories/auth_repository.dart';
-import '../state/register_state.dart';
 
 /// Flutter port of `RegisterViewModel.kt`.
 class RegisterViewModel {
@@ -85,9 +84,7 @@ class RegisterViewModel {
       return false;
     }
     if (confirmPassword.isEmpty) {
-      registerState.value = const RegisterError(
-        'Please confirm your password',
-      );
+      registerState.value = const RegisterError('Please confirm your password');
       return false;
     }
     if (password != confirmPassword) {

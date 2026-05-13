@@ -1,10 +1,9 @@
+import 'package:cooking_easy/features/auth/domain/repositories/auth_repository.dart';
+import 'package:cooking_easy/features/auth/presentation/navigation/auth_navigator.dart';
+import 'package:cooking_easy/features/auth/presentation/state/login_state.dart';
+import 'package:cooking_easy/features/auth/presentation/viewmodels/login_view_model.dart';
+import 'package:cooking_easy/features/auth/presentation/widgets/forgot_password_dialog.dart';
 import 'package:flutter/material.dart';
-
-import '../../domain/repositories/auth_repository.dart';
-import '../navigation/auth_navigator.dart';
-import '../state/login_state.dart';
-import '../viewmodels/login_view_model.dart';
-import '../widgets/forgot_password_dialog.dart';
 
 /// Flutter port of `LoginActivity.kt` (uses [LoginViewModel] internally).
 class LoginScreen extends StatefulWidget {
@@ -108,11 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _navigateToEnterName() {
-    AuthNavigator.openEnterName(
-      context,
-      clearTask: true,
-      finishCurrent: true,
-    );
+    AuthNavigator.openEnterName(context, clearTask: true, finishCurrent: true);
   }
 
   void _showError(String message) {
@@ -137,11 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF66BB6A),
-              Color(0xFF43A047),
-              Color(0xFF2E7D32),
-            ],
+            colors: [Color(0xFF66BB6A), Color(0xFF43A047), Color(0xFF2E7D32)],
           ),
         ),
         child: SafeArea(
@@ -272,227 +263,206 @@ class _LoginForm extends StatelessWidget {
         ],
       ),
       child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const Text(
-              'Sign In',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                color: Color(0xFF1B5E20),
-                fontSize: 20,
-                fontFamily: 'sans-serif',
-                fontWeight: FontWeight.w500,
-              ),
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            'Sign In',
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              color: Color(0xFF1B5E20),
+              fontSize: 20,
+              fontFamily: 'sans-serif',
+              fontWeight: FontWeight.w500,
             ),
-            const SizedBox(height: 20),
-            const Text("EMAIL",
-              style: TextStyle(
-                color: Color(0xFF888888),
-                fontSize: 11,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 0.08
-              ),
+          ),
+          const SizedBox(height: 20),
+          const Text(
+            "EMAIL",
+            style: TextStyle(
+              color: Color(0xFF888888),
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.08,
             ),
-            const SizedBox(height:6),
-            TextField(
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-              enabled: !isLoading,
-              decoration: InputDecoration(
-                hintText: 'your@email.com',
-                filled: true,
-                fillColor: const Color(0x1A43A047),
-                prefixIcon: const Icon(Icons.email_outlined),
+          ),
+          const SizedBox(height: 6),
+          TextField(
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            enabled: !isLoading,
+            decoration: InputDecoration(
+              hintText: 'your@email.com',
+              filled: true,
+              fillColor: const Color(0x1A43A047),
+              prefixIcon: const Icon(Icons.email_outlined),
 
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide
-                    (color: Color(0x1A43A047)
-                  ),
-                ),
-
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide
-                    (color: Color(0x2A43A047)
-                  ),
-                ),
-
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Color(0xFF2E7D32),
-                    width: 2
-                  ),
-                )
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Color(0x1A43A047)),
               ),
-            ),
-            const SizedBox(height: 16),
-            const Text("PASSWORD",
-              style: TextStyle(
-                color: Color(0xFF888888),
-                fontSize: 11,
-                fontWeight: FontWeight.w500,
-                letterSpacing: 0.08
-              ),
-            ),
-            const SizedBox(height: 6),
-            TextField(
-              controller: passwordController,
-              obscureText: true,
-              enabled: !isLoading,
-              decoration: InputDecoration(
-                hintText: '••••••••',
-                filled: true,
-                fillColor: const Color(0x1A43A047),
-                prefixIcon: const Icon(Icons.lock_outline),
-                suffixIcon: const Icon(Icons.visibility),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0x1A43A047)),
-                ),
 
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Color(0x1A43A047)),
-                ),
-
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Color(0xFF2E7D32),
-                    width: 2
-                  ),
-                )
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Color(0x2A43A047)),
               ),
-            ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: isLoading ? null : onForgotPassword,
-                child: const Text(
-                  'Forgot password?',
-                  style: TextStyle(
-                    color: Color(0xFF43A047),
-                    fontSize: 12,
-                    fontFamily: 'sans-serif',
-                    fontWeight: FontWeight.w500,
-                  ),
+
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(
+                  color: Color(0xFF2E7D32),
+                  width: 2,
                 ),
               ),
             ),
-            const SizedBox(height: 8),
-            ElevatedButton(
-              onPressed: isLoading ? null : onLogin,
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size(0, 52),
-                backgroundColor: Color(0xFF43A047),
-                foregroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+          ),
+          const SizedBox(height: 16),
+          const Text(
+            "PASSWORD",
+            style: TextStyle(
+              color: Color(0xFF888888),
+              fontSize: 11,
+              fontWeight: FontWeight.w500,
+              letterSpacing: 0.08,
+            ),
+          ),
+          const SizedBox(height: 6),
+          TextField(
+            controller: passwordController,
+            obscureText: true,
+            enabled: !isLoading,
+            decoration: InputDecoration(
+              hintText: '••••••••',
+              filled: true,
+              fillColor: const Color(0x1A43A047),
+              prefixIcon: const Icon(Icons.lock_outline),
+              suffixIcon: const Icon(Icons.visibility),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Color(0x1A43A047)),
+              ),
+
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: Color(0x1A43A047)),
+              ),
+
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(
+                  color: Color(0xFF2E7D32),
+                  width: 2,
                 ),
               ),
-              child: Text('Login',
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: isLoading ? null : onForgotPassword,
+              child: const Text(
+                'Forgot password?',
                 style: TextStyle(
-                  fontSize:15,
-                  fontFamily: 'sans-serif-medium',
+                  color: Color(0xFF43A047),
+                  fontSize: 12,
+                  fontFamily: 'sans-serif',
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
-            const SizedBox(height: 20),
-            const Row(
+          ),
+          const SizedBox(height: 8),
+          ElevatedButton(
+            onPressed: isLoading ? null : onLogin,
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(0, 52),
+              backgroundColor: Color(0xFF43A047),
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
+            ),
+            child: Text(
+              'Login',
+              style: TextStyle(fontSize: 15, fontFamily: 'sans-serif-medium'),
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Row(
+            children: [
+              Expanded(child: Divider(thickness: 1, color: Color(0xFFE0E0E0))),
+              Padding(
+                padding: EdgeInsetsGeometry.fromLTRB(10, 0, 10, 0),
+                child: Text(
+                  "or continue with",
+                  style: TextStyle(fontSize: 11, color: Color(0xFFAAAAAA)),
+                ),
+              ),
+              Expanded(child: Divider(thickness: 1, color: Color(0xFFE0E0E0))),
+            ],
+          ),
+          const SizedBox(height: 16),
+          OutlinedButton(
+            onPressed: isLoading ? null : onGoogle,
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size(0, 50),
+              foregroundColor: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
+              side: const BorderSide(color: Color(0xFFE0E0E0)),
+            ),
+
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: Divider(
-                    thickness: 1,
-                    color: Color(0xFFE0E0E0),
-                  )
+                Image.asset(
+                  'assets/images/google.png',
+                  width: 20,
+                  height: 20,
+                  errorBuilder: (_, __, ___) => const Icon(
+                    Icons.g_mobiledata,
+                    size: 20,
+                    color: Color(0xFF4285F4),
+                  ),
                 ),
-                Padding(
-                  padding: EdgeInsetsGeometry.fromLTRB(10, 0, 10, 0),
-                    child: Text("or continue with",
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Color(0xFFAAAAAA)
-                      ),
-                    )
-                ),
-                Expanded(
-                    child: Divider(
-                      thickness: 1,
-                      color: Color(0xFFE0E0E0),
-                    )
+                const SizedBox(width: 8),
+                const Text(
+                  'Google',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'sans-serif',
+                    color: Color(0xFF444444),
+                  ),
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-            OutlinedButton(
-              onPressed: isLoading ? null : onGoogle,
-              style: OutlinedButton.styleFrom(
-                minimumSize: const Size(0, 50),
-                foregroundColor: Colors.black,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+          ),
+          const SizedBox(height: 20),
+          if (isLoading)
+            const Center(child: CircularProgressIndicator(color: primaryGreen))
+          else
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "Don't have an account?",
+                  style: TextStyle(fontSize: 13, color: Color(0xFF999999)),
                 ),
-                side: const BorderSide(color: Color(0xFFE0E0E0)),
-              ),
-
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/google.png',
-                    width: 20,
-                    height: 20,
-                    errorBuilder: (_, __, ___) => const Icon(
-                      Icons.g_mobiledata,
-                      size: 20,
-                      color: Color(0xFF4285F4),
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  const Text('Google',
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontFamily: 'sans-serif',
-                      color: Color(0xFF444444)
-                    ),
-                  ),
-                ],
-              )
-
-            ),
-            const SizedBox(height: 20),
-            if (isLoading)
-              const Center(
-                child: CircularProgressIndicator(color: primaryGreen),
-              )
-            else
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Don't have an account?",
+                TextButton(
+                  onPressed: onSignUp,
+                  child: const Text(
+                    'Sign up',
                     style: TextStyle(
                       fontSize: 13,
-                      color: Color(0xFF999999)
+                      color: Color(0xFF43A047),
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  TextButton(
-                    onPressed: onSignUp,
-                    child: const Text(
-                      'Sign up',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Color(0xFF43A047),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-          ],
-        ),
-      );
+                ),
+              ],
+            ),
+        ],
+      ),
+    );
   }
 }

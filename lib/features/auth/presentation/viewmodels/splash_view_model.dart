@@ -1,7 +1,6 @@
+import 'package:cooking_easy/features/auth/domain/repositories/auth_repository.dart';
+import 'package:cooking_easy/features/auth/presentation/state/splash_state.dart';
 import 'package:flutter/foundation.dart';
-
-import '../../domain/repositories/auth_repository.dart';
-import '../state/splash_state.dart';
 
 /// Flutter port of the (Hilt-injected) `SplashViewModel` referenced by
 /// `SplashActivity.kt`. It checks the current login status and emits a

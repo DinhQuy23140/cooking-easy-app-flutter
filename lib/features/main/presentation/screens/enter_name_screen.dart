@@ -14,15 +14,11 @@ class EnterNameScreen extends StatelessWidget {
           height: double.infinity,
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFF66BB6A),
-                  Color(0xFF43A047),
-                  Color(0xFF2E7D32),
-                ],
-              ),
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF66BB6A), Color(0xFF43A047), Color(0xFF2E7D32)],
             ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -83,7 +79,8 @@ class EnterNameScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Enter your name",
+                        const Text(
+                          "Enter your name",
                           textAlign: TextAlign.start,
                           style: TextStyle(
                             color: Color(0xFF1B5E20),
@@ -93,7 +90,8 @@ class EnterNameScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 20),
-                        const Text("FULL NAME",
+                        const Text(
+                          "FULL NAME",
                           style: TextStyle(
                             color: Color(0xFF888888),
                             fontSize: 11,
@@ -101,12 +99,15 @@ class EnterNameScreen extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(height: 6,),
+                        const SizedBox(height: 6),
                         const SizedBox(
                           height: 50,
                           child: TextField(
                             decoration: InputDecoration(
-                              prefixIcon: Icon(Icons.person_2_outlined, size: 18,),
+                              prefixIcon: Icon(
+                                Icons.person_2_outlined,
+                                size: 18,
+                              ),
                               hintText: "Enter your name",
                               fillColor: Color(0x1A43A047),
                               filled: true,
@@ -115,15 +116,19 @@ class EnterNameScreen extends StatelessWidget {
                                   color: Color(0x2A43A047),
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.all(Radius.circular(12))
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(12),
+                                ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x2A43A047),
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.all(Radius.circular(12))
-                              )
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(12),
+                                ),
+                              ),
                             ),
                             style: TextStyle(
                               color: Color(0xFF2E5E2E),
@@ -132,8 +137,9 @@ class EnterNameScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 6,),
-                        const Text("Min 2 characters",
+                        const SizedBox(height: 6),
+                        const Text(
+                          "Min 2 characters",
                           style: TextStyle(
                             color: Color(0xFFAAAAAA),
                             fontSize: 11,
@@ -141,8 +147,9 @@ class EnterNameScreen extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(height: 18,),
-                        const Text("NICKNAME (optional)",
+                        const SizedBox(height: 18),
+                        const Text(
+                          "NICKNAME (optional)",
                           style: TextStyle(
                             color: Color(0xFF888888),
                             fontSize: 11,
@@ -150,7 +157,7 @@ class EnterNameScreen extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const SizedBox(height: 6,),
+                        const SizedBox(height: 6),
                         const SizedBox(
                           height: 50,
                           child: TextField(
@@ -158,21 +165,28 @@ class EnterNameScreen extends StatelessWidget {
                               fillColor: Color(0x1A43A047),
                               filled: true,
                               hintText: "Enter your nickname",
-                              prefixIcon: Icon(Icons.person_2_outlined, size: 18,),
+                              prefixIcon: Icon(
+                                Icons.person_2_outlined,
+                                size: 18,
+                              ),
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x2A43A047),
                                   width: 1,
                                 ),
-                                borderRadius: BorderRadius.all(Radius.circular(12))
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(12),
+                                ),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Color(0x2A43A047),
                                   width: 2,
                                 ),
-                                borderRadius: BorderRadius.all(Radius.circular(12))
-                              )
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(12),
+                                ),
+                              ),
                             ),
                             style: TextStyle(
                               color: Color(0xFF2E5E2E),
@@ -192,7 +206,7 @@ class EnterNameScreen extends StatelessWidget {
                               foregroundColor: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
-                              )
+                              ),
                             ),
                             child: const Text("Continue"),
                           ),
@@ -202,25 +216,26 @@ class EnterNameScreen extends StatelessWidget {
                           width: double.infinity,
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Text("Skip for now",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFFAAAAAA),
-                              fontSize: 12,
-                              fontFamily: 'sans-serif',
-                            ),
+                            child: Text(
+                              "Skip for now",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFFAAAAAA),
+                                fontSize: 12,
+                                fontFamily: 'sans-serif',
+                              ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
             ],
-          )
-        )
-      )
+          ),
+        ),
+      ),
     );
   }
 }

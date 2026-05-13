@@ -1,9 +1,8 @@
+import 'package:cooking_easy/core/theme/app_text_title.dart';
 import 'package:cooking_easy/core/theme/screen_gradient.dart';
+import 'package:cooking_easy/core/theme/shape_cart_view.dart';
 import 'package:cooking_easy/core/theme/shape_hero_header.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../core/theme/app_text_title.dart';
-import '../../../../core/theme/shape_cart_view.dart';
 
 class ChatBotAiScreen extends StatefulWidget {
   const ChatBotAiScreen({super.key});
@@ -258,12 +257,13 @@ class _ChatBotAiState extends State<ChatBotAiScreen> {
                               child: Container(
                                 width: 32,
                                 height: 32,
-                                decoration: ShapeCartView.shapeCartView.copyWith(
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(16),
-                                  ),
-                                  color: Color(0xFFEAF3DE),
-                                ),
+                                decoration: ShapeCartView.shapeCartView
+                                    .copyWith(
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(16),
+                                      ),
+                                      color: Color(0xFFEAF3DE),
+                                    ),
                                 child: const Icon(
                                   Icons.camera_alt_outlined,
                                   size: 18,

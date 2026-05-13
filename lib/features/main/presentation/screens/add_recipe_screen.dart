@@ -1,12 +1,12 @@
+import 'package:cooking_easy/core/theme/app_text_title.dart';
+import 'package:cooking_easy/core/theme/screen_gradient.dart';
 import 'package:cooking_easy/core/theme/shape_accent_bar.dart';
+import 'package:cooking_easy/core/theme/shape_cart_view.dart';
+import 'package:cooking_easy/core/theme/shape_circle_glass.dart';
 import 'package:cooking_easy/core/theme/shape_hero_header.dart';
+import 'package:cooking_easy/core/theme/shape_input_field.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/theme/app_text_title.dart';
-import '../../../../core/theme/screen_gradient.dart';
-import '../../../../core/theme/shape_cart_view.dart';
-import '../../../../core/theme/shape_circle_glass.dart';
-import '../../../../core/theme/shape_input_field.dart';
 
 class AddRecipeScreen extends StatefulWidget {
   const AddRecipeScreen({super.key});
@@ -593,8 +593,10 @@ class _AddRecipeState extends State<AddRecipeScreen> {
                                 Expanded(
                                   child: OutlinedButton(
                                     onPressed: () {},
-                                    child: Text("Save Draft",
-                                    style: AppTextTitle.textHeader,),
+                                    child: Text(
+                                      "Save Draft",
+                                      style: AppTextTitle.textHeader,
+                                    ),
                                     style: OutlinedButton.styleFrom(
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
@@ -612,14 +614,16 @@ class _AddRecipeState extends State<AddRecipeScreen> {
                                 Expanded(
                                   child: ElevatedButton.icon(
                                     onPressed: () {},
-                                    icon: Icon(Icons.add, color: Colors.white,),
+                                    icon: Icon(Icons.add, color: Colors.white),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Color(0xFF43A047),
                                     ),
-                                    label: Text("Publish",
-                                    style: AppTextTitle.textHeader.copyWith(
-                                      color: Colors.white
-                                    ),),
+                                    label: Text(
+                                      "Publish",
+                                      style: AppTextTitle.textHeader.copyWith(
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ],

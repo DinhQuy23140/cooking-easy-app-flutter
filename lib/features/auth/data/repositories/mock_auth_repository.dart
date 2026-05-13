@@ -1,5 +1,5 @@
-import '../../domain/entities/auth_user.dart';
-import '../../domain/repositories/auth_repository.dart';
+import 'package:cooking_easy/features/auth/domain/entities/auth_user.dart';
+import 'package:cooking_easy/features/auth/domain/repositories/auth_repository.dart';
 
 class MockAuthRepository implements AuthRepository {
   AuthUser? _currentUser;

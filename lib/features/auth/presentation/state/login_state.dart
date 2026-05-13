@@ -1,4 +1,4 @@
-import '../../domain/entities/auth_user.dart';
+import 'package:cooking_easy/features/auth/domain/entities/auth_user.dart';
 
 /// Mirrors `LoginState.kt` (sealed class).
 sealed class LoginState {

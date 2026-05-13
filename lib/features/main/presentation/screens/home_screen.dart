@@ -17,9 +17,7 @@ class _HomeState extends State<HomeScreen> {
       body: SafeArea(
         bottom: false,
         child: Container(
-          decoration: BoxDecoration(
-            gradient: ScreenGradient.gradient
-          ),
+          decoration: BoxDecoration(gradient: ScreenGradient.gradient),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

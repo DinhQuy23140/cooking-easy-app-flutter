@@ -1,9 +1,8 @@
+import 'package:cooking_easy/features/auth/domain/repositories/auth_repository.dart';
+import 'package:cooking_easy/features/auth/presentation/state/splash_state.dart';
+import 'package:cooking_easy/features/auth/presentation/viewmodels/splash_view_model.dart';
+import 'package:cooking_easy/routes/app_router.dart';
 import 'package:flutter/material.dart';
-
-import '../../domain/repositories/auth_repository.dart';
-import '../navigation/auth_navigator.dart';
-import '../state/splash_state.dart';
-import '../viewmodels/splash_view_model.dart';
 
 /// Flutter port of `SplashActivity.kt`.
 class SplashScreen extends StatefulWidget {
@@ -42,24 +41,16 @@ class _SplashScreenState extends State<SplashScreen> {
       case SplashLoading():
         break;
       case SplashNavigateToLogin():
-        AuthNavigator.openLogin(
+        AppRouter.openLogin(
           context,
           repository: widget.repository,
           clearTask: true,
           finishCurrent: true,
         );
       case SplashNavigateToEnterName():
-        AuthNavigator.openEnterName(
-          context,
-          clearTask: true,
-          finishCurrent: true,
-        );
+        AppRouter.openEnterName(context, clearTask: true, finishCurrent: true);
       case SplashNavigateToMain():
-        AuthNavigator.openMain(
-          context,
-          clearTask: true,
-          finishCurrent: true,
-        );
+        AppRouter.openMain(context, clearTask: true, finishCurrent: true);
     }
   }
 
@@ -73,11 +64,7 @@ class _SplashScreenState extends State<SplashScreen> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF66BB6A),
-              Color(0xFF43A047),
-              Color(0xFF2E7D32),
-            ],
+            colors: [Color(0xFF66BB6A), Color(0xFF43A047), Color(0xFF2E7D32)],
           ),
         ),
         child: Center(
@@ -87,28 +74,32 @@ class _SplashScreenState extends State<SplashScreen> {
               Container(
                 decoration: BoxDecoration(
                   color: Color(0x1AFFFFFF),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
-                  ),
-                  border: Border.all(
-                    color: Color(0x2AFFFFFF),
-                    width: 1,
-                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                  border: Border.all(color: Color(0x2AFFFFFF), width: 1),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(12),
-                    child: Image.asset('assets/images/logo.png', width: 40, height: 40,)),
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      width: 40,
+                      height: 40,
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(height: 24),
-              Text('Cooking', style: TextStyle(
-                color: Colors.white,
-                fontSize: 36,
-                fontWeight: FontWeight.w500,
-              ),),
-              Text('EASY',
+              Text(
+                'Cooking',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 36,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              Text(
+                'EASY',
                 style: TextStyle(
                   color: Color(0xCCFFFFFF),
                   fontSize: 18,
@@ -121,22 +112,20 @@ class _SplashScreenState extends State<SplashScreen> {
                 width: 90,
                 child: const Row(
                   children: [
-                    Expanded(child: Divider(
-                      thickness: 1,
-                      color: Color(0x33FFFFFF),
-                    )),
+                    Expanded(
+                      child: Divider(thickness: 1, color: Color(0x33FFFFFF)),
+                    ),
                     Text("."),
-                    Expanded(child: Divider(
-                      thickness: 1,
-                      color: Color(0x33FFFFFF),
-                    )),
+                    Expanded(
+                      child: Divider(thickness: 1, color: Color(0x33FFFFFF)),
+                    ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }

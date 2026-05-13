@@ -1,7 +1,6 @@
+import 'package:cooking_easy/features/auth/domain/repositories/auth_repository.dart';
+import 'package:cooking_easy/features/auth/presentation/state/login_state.dart';
 import 'package:flutter/foundation.dart';
-
-import '../../domain/repositories/auth_repository.dart';
-import '../state/login_state.dart';
 
 /// Flutter port of `LoginViewModel.kt`.
 class LoginViewModel {
@@ -13,9 +12,8 @@ class LoginViewModel {
     const LoginIdle(),
   );
 
-  final ValueNotifier<LoginState> resetPasswordState = ValueNotifier<LoginState>(
-    const LoginIdle(),
-  );
+  final ValueNotifier<LoginState> resetPasswordState =
+      ValueNotifier<LoginState>(const LoginIdle());
 
   static final RegExp _emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
 
@@ -26,7 +24,10 @@ class LoginViewModel {
 
     loginState.value = const LoginLoading();
     try {
-      final user = await _authRepository.login(email: email, password: password);
+      final user = await _authRepository.login(
+        email: email,
+        password: password,
+      );
       loginState.value = LoginSuccess(user, isNewUser: user.isNewUser);
     } catch (e) {
       loginState.value = LoginError(_messageOf(e, fallback: 'Login failed'));

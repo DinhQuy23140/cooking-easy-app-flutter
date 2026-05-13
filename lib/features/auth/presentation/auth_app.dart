@@ -1,8 +1,7 @@
+import 'package:cooking_easy/features/auth/data/repositories/firebase_auth_repository.dart';
+import 'package:cooking_easy/features/auth/domain/repositories/auth_repository.dart';
+import 'package:cooking_easy/features/auth/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../data/repositories/mock_auth_repository.dart';
-import '../domain/repositories/auth_repository.dart';
-import 'screens/splash_screen.dart';
 
 /// Root widget for the auth feature.
 ///
@@ -16,7 +15,7 @@ class AuthApp extends StatefulWidget {
 }
 
 class _AuthAppState extends State<AuthApp> {
-  final AuthRepository _repository = MockAuthRepository();
+  final AuthRepository _repository = FirebaseAuthRepository();
 
   @override
   Widget build(BuildContext context) {

@@ -40,12 +40,8 @@ class _ForgotPasswordDialogState extends State<_ForgotPasswordDialog> {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Color(0xFF66BB6A),
-              Color(0xFF43A047),
-              Color(0xFF2E7D32),
-            ]
-          )
+            colors: [Color(0xFF66BB6A), Color(0xFF43A047), Color(0xFF2E7D32)],
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -56,34 +52,31 @@ class _ForgotPasswordDialogState extends State<_ForgotPasswordDialog> {
                 decoration: BoxDecoration(
                   color: Color(0x2AFFFFFF),
                   borderRadius: BorderRadius.circular(5),
-                  border: Border.all(
-                    color: Color(0x1AFFFFFF)
-                  )
+                  border: Border.all(color: Color(0x1AFFFFFF)),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: ClipRRect(
-                    child: Icon(
-                      Icons.lock_clock_outlined,
-                      size: 26,
-                    )
+                    child: Icon(Icons.lock_clock_outlined, size: 26),
                   ),
                 ),
               ),
             ),
             const SizedBox(height: 10),
-            const Text('Forgot Password',
+            const Text(
+              'Forgot Password',
               style: TextStyle(
                 fontSize: 17,
                 fontWeight: FontWeight.w500,
                 fontFamily: 'sans-serif',
-                color: Colors.white
+                color: Colors.white,
               ),
             ),
-            const SizedBox(height: 6,),
+            const SizedBox(height: 6),
             Padding(
               padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-              child: const Text("Enter your email and we'll send you a link to reset you...",
+              child: const Text(
+                "Enter your email and we'll send you a link to reset you...",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 12,
@@ -102,7 +95,8 @@ class _ForgotPasswordDialogState extends State<_ForgotPasswordDialog> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("EMAIL",
+            Text(
+              "EMAIL",
               textAlign: TextAlign.start,
               style: TextStyle(
                 color: Color(0xFF888888),
@@ -121,7 +115,7 @@ class _ForgotPasswordDialogState extends State<_ForgotPasswordDialog> {
                 decoration: const InputDecoration(
                   hintText: "your@email.com",
                   filled: true,
-                  prefixIcon: Icon(Icons.email_outlined, size: 18,),
+                  prefixIcon: Icon(Icons.email_outlined, size: 18),
                   fillColor: Color(0x1A43A047),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0x1A43A047)),
@@ -148,21 +142,22 @@ class _ForgotPasswordDialogState extends State<_ForgotPasswordDialog> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: Color(0xFFF1F8E9),
-                border: Border.all(color: Color(0x1A43A047))
+                border: Border.all(color: Color(0x1A43A047)),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: const Row(
                   children: [
-                    Icon(Icons.notification_add_outlined, size: 18,),
-                    const SizedBox(width: 8,),
-                    Text('You will receive a link to reset your password',
+                    Icon(Icons.notification_add_outlined, size: 18),
+                    const SizedBox(width: 8),
+                    Text(
+                      'You will receive a link to reset your password',
                       style: TextStyle(
                         fontSize: 11,
                         fontFamily: 'sans-serif',
-                        color: Color(0xFF388E3C)
+                        color: Color(0xFF388E3C),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -174,48 +169,47 @@ class _ForgotPasswordDialogState extends State<_ForgotPasswordDialog> {
                   child: TextButton(
                     onPressed: () => Navigator.of(context).pop(),
                     style: TextButton.styleFrom(
-                        foregroundColor: Color(0xFF888888),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)
-                        ),
-                        side: BorderSide(
-                            color: Color(0xFFE0E0E0)
-                        )
+                      foregroundColor: Color(0xFF888888),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      side: BorderSide(color: Color(0xFFE0E0E0)),
                     ),
                     child: const Text('Cancel'),
                   ),
                 ),
-                const SizedBox(width: 12,),
+                const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () =>
                         Navigator.of(context).pop(_emailController.text.trim()),
                     style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        backgroundColor: Color(0xFF43A047),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)
-                        )
+                      padding: EdgeInsets.zero,
+                      backgroundColor: Color(0xFF43A047),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text("Send",
+                        const Text(
+                          "Send",
                           style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'sans-serif',
-                              color: Colors.white
+                            fontSize: 13,
+                            fontFamily: 'sans-serif',
+                            color: Colors.white,
                           ),
                         ),
-                        const SizedBox(width: 8,),
-                        const Icon(Icons.send, size: 18, color: Colors.white,)
+                        const SizedBox(width: 8),
+                        const Icon(Icons.send, size: 18, color: Colors.white),
                       ],
                     ),
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

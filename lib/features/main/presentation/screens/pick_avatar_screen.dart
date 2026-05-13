@@ -40,7 +40,11 @@ class PickAvatarScreen extends StatelessWidget {
                             width: 2,
                           ),
                         ),
-                        child: Icon(Icons.person_2_outlined, size: 24, color: Colors.white,),
+                        child: Icon(
+                          Icons.person_2_outlined,
+                          size: 24,
+                          color: Colors.white,
+                        ),
                       ),
                       Positioned(
                         bottom: 0,
@@ -52,8 +56,12 @@ class PickAvatarScreen extends StatelessWidget {
                             color: Color(0xFF43A047),
                             borderRadius: BorderRadius.circular(14),
                           ),
-                            child: Icon(
-                              Icons.camera_alt_outlined, size: 14, color: Colors.white,)),
+                          child: Icon(
+                            Icons.camera_alt_outlined,
+                            size: 14,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -151,36 +159,40 @@ class PickAvatarScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 14,),
+                        const SizedBox(height: 14),
                         // recyclerview avatar
-                        const SizedBox(height: 24,),
+                        const SizedBox(height: 24),
                         SizedBox(
                           width: double.infinity,
                           height: 52,
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Color(0xFF43A047),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(14),
-                                )
+                              backgroundColor: Color(0xFF43A047),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
                             ),
-                            child: Text("Confirm & Continue",
-                            style: TextStyle(
-                              fontFamily: 'sans-serif',
-                              color: Colors.white,
-                              fontSize: 15
-                            ),),
+                            child: Text(
+                              "Confirm & Continue",
+                              style: TextStyle(
+                                fontFamily: 'sans-serif',
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
                           ),
                         ),
-                        const SizedBox(height: 12,),
+                        const SizedBox(height: 12),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: const Text("Skip for now",
-                          style: TextStyle(
-                            color: Color(0xFFAAAAAA),
-                            fontSize: 12
-                          ),),
+                          child: const Text(
+                            "Skip for now",
+                            style: TextStyle(
+                              color: Color(0xFFAAAAAA),
+                              fontSize: 12,
+                            ),
+                          ),
                         ),
                       ],
                     ),
