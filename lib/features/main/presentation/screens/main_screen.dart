@@ -1,4 +1,3 @@
-import 'package:cooking_easy/features/main/presentation/screens/add_recipe_screen.dart';
 import 'package:cooking_easy/features/main/presentation/screens/explore_screen.dart';
 import 'package:cooking_easy/features/main/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,11 @@ class _MainState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: currentIndex, children: pages),
+      // IndexedStack sizes to the tallest *intrinsic* child; short pages leave
+      // empty body area (default scaffold color). Expand so every tab fills the body.
+      body: SizedBox.expand(
+        child: IndexedStack(index: currentIndex, children: pages),
+      ),
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentIndex,
         onDestinationSelected: (index) {
