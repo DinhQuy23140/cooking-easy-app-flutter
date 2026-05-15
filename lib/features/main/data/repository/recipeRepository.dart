@@ -43,7 +43,7 @@ class Reciperepository {
   Future<List<Recipe>> getRecipes() async {
     final recipes = <Recipe>[];
 
-    for (int i = 'a'.codeUnitAt(0); i <= 'z'.codeUnitAt(0); i++) {
+    for (int i = 'a'.codeUnitAt(0); i <= 'a'.codeUnitAt(0); i++) {
       final letter = String.fromCharCode(i);
 
       final result = await getRecipesByLetter(letter);

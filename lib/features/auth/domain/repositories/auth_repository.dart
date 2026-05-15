@@ -10,4 +10,14 @@ abstract class AuthRepository {
   Future<AuthUser> register({required String email, required String password});
 
   Future<void> resetPassword(String email);
+
+  Future<void> signOut();
+
+  bool get isLogin;
+
+  Future<void> udpateEmail({required String email});
+
+  Future<void> updatePassword({required String password});
+
+  Future<void> deleteAccount();
 }

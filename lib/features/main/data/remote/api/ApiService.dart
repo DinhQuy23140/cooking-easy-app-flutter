@@ -16,7 +16,7 @@ class ApiService {
   }
 
   Future<Response> getCategories() async {
-    return dio.get('list.php?c=list');
+    return dio.get('categories.php');
   }
 
   Future<Response> getIngredients() async {

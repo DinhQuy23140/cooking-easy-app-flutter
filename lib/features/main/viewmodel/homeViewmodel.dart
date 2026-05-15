@@ -1,3 +1,5 @@
+import 'package:cooking_easy/features/main/domain/model/user.dart';
+import 'package:cooking_easy/features/main/domain/repository/userRepository.dart';
 import 'package:cooking_easy/features/main/presentation/state/api_state.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -8,8 +10,9 @@ import '../domain/model/recipe.dart';
 
 class Homeviewmodel extends ChangeNotifier {
   final Reciperepository repository;
+  final UserRepository userRepository;
 
-  Homeviewmodel(this.repository);
+  Homeviewmodel(this.repository, this.userRepository);
 
   final ValueNotifier<ApiState<List<Area>>> areasState = ValueNotifier(
     ApiLoading<List<Area>>(),
@@ -21,6 +24,10 @@ class Homeviewmodel extends ChangeNotifier {
 
   final ValueNotifier<ApiState<List<Recipe>>> recipesState = ValueNotifier(
     ApiLoading<List<Recipe>>(),
+  );
+
+  final ValueNotifier<ApiState<User>> userProfileState = ValueNotifier(
+    ApiLoading<User>(),
   );
 
   Future<void> getAreas() async {
@@ -42,8 +49,42 @@ class Homeviewmodel extends ChangeNotifier {
       final result = await repository.getCategories();
 
       categoriesState.value = ApiSuccess<List<Category>>(result);
-    } catch(e) {
+    } catch (e) {
       categoriesState.value = ApiError<List<Category>>(e.toString());
     }
+  }
+
+  Future<void> getRecipes() async {
+    try {
+      recipesState.value = ApiLoading();
+      final result = await repository.getRecipes();
+      recipesState.value = ApiSuccess(result);
+    } catch (e) {
+      recipesState.value = ApiError(e.toString());
+    }
+  }
+
+  Future<void> getUserProfile() async {
+    try {
+      userProfileState.value = ApiLoading<User>();
+      final uid = await userRepository.getCurrentUserUUID();
+      final result = await userRepository.getUserProfile(uid: uid);
+      userProfileState.value = ApiSuccess<User>(result);
+    } on StateError catch (e) {
+      userProfileState.value = ApiError<User>(e.message);
+    } catch (e) {
+      userProfileState.value = ApiError<User>(_userProfileErrorMessage(e));
+    }
+  }
+
+  String _userProfileErrorMessage(Object e) {
+    final text = e.toString();
+    if (text.contains('permission-denied')) {
+      return 'Cannot load profile (permission denied)';
+    }
+    if (text.contains('network') || text.contains('unavailable')) {
+      return 'Cannot load profile (network error)';
+    }
+    return 'Cannot load profile';
   }
 }
