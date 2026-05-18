@@ -168,5 +168,16 @@ class Userrepositoryimp extends UserRepository{
     return user.uid;
   }
 
+  @override
+  Future<void> logout() async{
+    try {
+      await firebaseAuth.signOut();
+    } catch(e) {
+      throw Exception(e);
+    }
+  }
+
+
+
 
 }

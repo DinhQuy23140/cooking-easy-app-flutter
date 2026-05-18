@@ -623,7 +623,7 @@ class _ExploreState extends State<ExploreScreen> {
 
   Widget createListRandomRecipe(List<Recipe> recipes) {
     return SizedBox(
-      height: 280,
+      height: 260,
       child: ListView.builder(
         itemCount: recipes.length,
         scrollDirection: Axis.horizontal,

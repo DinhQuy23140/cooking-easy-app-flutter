@@ -23,4 +23,5 @@ abstract class UserRepository {
   Future<bool> isFollowing({required String uid, required String followId});
   Future<(int, int)> getFollowStats({required String uid});
   Future<String> getCurrentUserUUID();
+  Future<void> logout();
 }

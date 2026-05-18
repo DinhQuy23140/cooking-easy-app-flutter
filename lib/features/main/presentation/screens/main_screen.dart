@@ -2,7 +2,9 @@ import 'package:cooking_easy/features/main/presentation/screens/explore_screen.d
 import 'package:cooking_easy/features/main/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'chat_bot_ai_screen.dart';
 import 'chat_screen.dart';
+import 'my_profile_screen.dart';
 
 /// Flutter placeholder for `MainActivity`.
 class MainScreen extends StatefulWidget {
@@ -16,7 +18,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainState extends State<MainScreen> {
   int currentIndex = 0;
-  final List<Widget> pages = [const HomeScreen(), const ExploreScreen(), const ChatScreen()];
+  final List<Widget> pages = [const HomeScreen(), const ExploreScreen(), const ChatScreen(), const ChatBotAiScreen(), const MyProfileScreen()];
 
   @override
   Widget build(BuildContext context) {

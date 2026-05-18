@@ -22,7 +22,7 @@ class RecipeCard extends StatelessWidget{
           children: [
             SizedBox(
               width: double.infinity,
-              height: 150,
+              height: 130,
               child: Stack(
                 children: [
                   Positioned.fill(
