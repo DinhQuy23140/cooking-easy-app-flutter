@@ -22,14 +22,14 @@ extension DocumentSnapshotExt on DocumentSnapshot<Map<String, dynamic>> {
     final json = data() ?? {};
     return User(
       uid: userId,
-      avatarUrl: json['avatarUrl'] ?? '',
-      email: json['email'] ?? '',
-      fcmToken: json['fcmToken'] ?? '',
+      avatarUrl: _optionalString(json['avatarUrl']),
+      email: _stringField(json['email']),
+      fcmToken: _stringField(json['fcmToken']),
       fcm_tokens: _stringListFrom(json['fcm_tokens']),
-      fullName: json['fullName'] ?? '',
-      isOnline: json['isOnline'] ?? '',
-      lastActiveAt: json['lastActiveAt'] ?? '',
-      createdAt: json['createdAt'] ?? '',
+      fullName: _optionalString(json['fullName']),
+      isOnline: _optionalString(json['isOnline']),
+      lastActiveAt: _firestoreDateString(json['lastActiveAt']),
+      createdAt: _firestoreDateString(json['createdAt']),
     );
   }
 
@@ -38,6 +38,35 @@ extension DocumentSnapshotExt on DocumentSnapshot<Map<String, dynamic>> {
       return value.map((e) => e.toString()).toList();
     }
     return [];
+  }
+
+  String _stringField(dynamic value) {
+    if (value == null) return '';
+    return value.toString();
+  }
+
+  String? _optionalString(dynamic value) {
+    if (value == null) return null;
+    final text = value.toString();
+    return text.isEmpty ? null : text;
+  }
+
+  String _firestoreDateString(dynamic value) {
+    if (value == null) return '';
+    if (value is Timestamp) {
+      return DateFormat('HH:mm dd/MM/yyyy').format(value.toDate());
+    }
+    if (value is int) {
+      return DateFormat('HH:mm dd/MM/yyyy').format(
+        DateTime.fromMillisecondsSinceEpoch(value),
+      );
+    }
+    if (value is num) {
+      return DateFormat('HH:mm dd/MM/yyyy').format(
+        DateTime.fromMillisecondsSinceEpoch(value.toInt()),
+      );
+    }
+    return value.toString();
   }
 }
 

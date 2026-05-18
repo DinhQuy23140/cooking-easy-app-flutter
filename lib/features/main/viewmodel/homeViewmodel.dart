@@ -72,13 +72,17 @@ class Homeviewmodel extends ChangeNotifier {
       userProfileState.value = ApiSuccess<User>(result);
     } on StateError catch (e) {
       userProfileState.value = ApiError<User>(e.message);
-    } catch (e) {
+    } catch (e, stack) {
+      debugPrint('getUserProfile failed: $e\n$stack');
       userProfileState.value = ApiError<User>(_userProfileErrorMessage(e));
     }
   }
 
   String _userProfileErrorMessage(Object e) {
     final text = e.toString();
+    if (text.contains('subtype of type')) {
+      return 'Cannot load profile (invalid data format)';
+    }
     if (text.contains('permission-denied')) {
       return 'Cannot load profile (permission denied)';
     }
