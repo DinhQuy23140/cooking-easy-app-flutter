@@ -8,10 +8,13 @@ import 'package:cooking_easy/features/main/domain/model/category.dart';
 import 'package:cooking_easy/features/main/domain/model/recipe.dart';
 import 'package:cooking_easy/features/main/domain/model/user.dart';
 import 'package:cooking_easy/features/main/presentation/state/api_state.dart';
+import 'package:cooking_easy/features/main/presentation/widget/area_card.dart';
+import 'package:cooking_easy/features/main/presentation/widget/category_card.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/material.dart';
 import '../../data/repository/recipeRepository.dart';
 import '../../viewmodel/homeViewmodel.dart';
+import '../widget/recipe_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -516,33 +519,9 @@ class _HomeState extends State<HomeScreen> {
       alignment: WrapAlignment.start,
       children: areas
           .map(
-            (area) => InkWell(
-              onTap: () {
-                // Handle area selection
-              },
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  side: BorderSide(color: Color(0xFFD9E5D4), width: 1),
-                ),
-                color: Colors.white,
-                elevation: 2,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                    vertical: 6,
-                  ),
-                  child: Text(
-                    area.strArea,
-                    style: TextStyle(
-                      color: Color(0xFF2F3C2F),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            (area) => AreaCard(area: area, onTap: (){
+
+            })
           )
           .toList(),
     );
@@ -563,64 +542,9 @@ class _HomeState extends State<HomeScreen> {
         ),
         itemBuilder: (context, index) {
           final category = categories[index];
-          return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-              side: BorderSide(color: Color(0xFFE0E0E0), width: 0.5),
-            ),
-            color: Colors.white,
-            elevation: 2,
-            child: Column(
-              children: [
-                Container(
-                  width: 50,
-                  height: 50,
-                  margin: const EdgeInsets.fromLTRB(15, 15, 15, 6),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
-                    border: Border.all(color: Color(0xFFF5F5F5)),
-                    color: Color(0xFFF5F5F5),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
-                    child: Image.network(
-                      category.strCategoryThumb,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) =>
-                          Icon(Icons.error),
-                      loadingBuilder: (context, child, progress) {
-                        if (progress == null) {
-                          return child;
-                        }
-                        return CircularProgressIndicator(
-                          value: progress.expectedTotalBytes != null
-                              ? progress.cumulativeBytesLoaded /
-                                    progress.expectedTotalBytes!
-                              : null,
-                        );
-                      },
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(5, 0, 5, 10),
-                  child: Text(
-                    category.strCategory,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Color(0xFF1E2F23),
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'sans-serif',
-                      letterSpacing: 1,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ),
-              ],
-            ),
-          );
+          return CategoryCard(category: category, onTap: () {
+
+          });
         },
       ),
     );
@@ -641,175 +565,9 @@ class _HomeState extends State<HomeScreen> {
         ),
         itemBuilder: (BuildContext context, int index) {
           final recipe = recipes[index];
-          return Card(
-            elevation: 2,
-            color: Colors.white,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14),
-              side: BorderSide(color: Color(0x332E5E2E), width: 0.5),
-            ),
-            child: Column(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 122,
-                  child: Stack(
-                    children: [
-                      Positioned.fill(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(14),
-                            topRight: Radius.circular(14),
-                          ),
-                          child: Image.network(
-                            recipe.strMealThumb,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) =>
-                                const Icon(Icons.error),
-                            loadingBuilder: (context, child, progress) {
-                              if (progress == null) return child;
-                              return CircularProgressIndicator(
-                                color: Colors.white,
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Container(
-                          height: 52,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [Color(0x00FFFFFF), Color(0xCCFFFFFF)],
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        right: 5,
-                        top: 5,
-                        child: Material(
-                          elevation: 2,
-                          shape: CircleBorder(),
-                          child: InkWell(
-                            onTap: () {},
-                            customBorder: CircleBorder(),
-                            child: SizedBox(
-                              width: 34,
-                              height: 34,
-                              child: Icon(
-                                Icons.favorite_outline,
-                                size: 22,
-                                color: Colors.redAccent,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 5,
-                        right: 5,
-                        child: Material(
-                          elevation: 2,
-                          shape: CircleBorder(),
-                          child: InkWell(
-                            onTap: () {},
-                            customBorder: CircleBorder(),
-                            child: SizedBox(
-                              width: 32,
-                              height: 32,
-                              child: Icon(
-                                Icons.video_collection,
-                                color: Colors.red,
-                                size: 18,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(12, 10, 12, 5),
-                  child: Column(
-                    children: [
-                      Text(
-                        "Jerk chicken with rice &amp; peas — long title that should ellipsize cleanly",
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontFamily: 'sans-serif',
-                          color: Color(0xFF1B1F1C),
-                          fontSize: 13,
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.cookie_outlined,
-                            color: Colors.green,
-                            size: 15,
-                          ),
-                          const SizedBox(width: 5),
-                          Expanded(
-                            child: Text(
-                              "Chicken • Jamaican · Spicy · Dinner",
-                              style: TextStyle(
-                                fontFamily: 'sans-serif',
-                                color: Color(0xFF4A5D4A),
-                                fontSize: 12,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 5),
-                      Container(
-                        height: 1,
-                        decoration: BoxDecoration(color: Color(0x12000000)),
-                      ),
-                      const SizedBox(height: 5),
-                      Row(
-                        children: [
-                          Container(
-                            padding: EdgeInsets.all(2),
-                            width: 26,
-                            height: 26,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(0xFFE0E0E0),
-                            ),
-                            child: Icon(Icons.person_outline, size: 14),
-                          ),
-                          const SizedBox(width: 5),
-                          Expanded(
-                            child: Text(
-                              " Admin",
-                              style: TextStyle(
-                                fontFamily: 'sans-serif',
-                                color: Color(0xFF2E5E2E),
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          );
+          return RecipeCard(recipe: recipe, onTap: () {
+
+          });
         },
       ),
     );

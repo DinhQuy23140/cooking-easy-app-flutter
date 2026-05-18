@@ -71,4 +71,18 @@ class Reciperepository {
 
     return RecipeMapper.toRecipeList(recipesDto);
   }
+
+  Future<Recipe> getRandomRecipe() async {
+    final response = await apiService.getRandomRecipe();
+    final rawData = response.data;
+    if(rawData is! Map) {
+      return Recipe();
+    }
+    final map = Map<String, dynamic>.from(rawData);
+    final recipeDto = RecipeResponseDto.fromJson(map).meals;
+    if(recipeDto == null) {
+      return Recipe();
+    }
+    return RecipeMapper.toRecipe(recipeDto[0]);
+  }
 }

@@ -12,18 +12,22 @@ class ApiService {
 
   Future<Response> getAreas() async {
     // Relative path: a leading "/" would replace the whole path and hit a 404 HTML page.
-    return dio.get('list.php?a=list');
+    return await dio.get('list.php?a=list');
   }
 
   Future<Response> getCategories() async {
-    return dio.get('categories.php');
+    return await dio.get('categories.php');
   }
 
   Future<Response> getIngredients() async {
-    return dio.get('list.php?i=list');
+    return await dio.get('list.php?i=list');
   }
 
-  Future<Response> getRecipeByFirstLetter(String letter) {
-    return dio.get('search.php?f=$letter');
+  Future<Response> getRecipeByFirstLetter(String letter) async {
+    return await dio.get('search.php?f=$letter');
+  }
+
+  Future<Response> getRandomRecipe() async {
+    return await dio.get('random.php');
   }
 }
